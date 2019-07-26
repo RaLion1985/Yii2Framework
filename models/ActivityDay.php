@@ -16,7 +16,7 @@ class ActivityDay extends Model
     {
         return [
           ['titleEvent','required'],
-          ['typeOfDay','string','min' => 5],
+          ['typeOfDay','string'],
 
         ];
     }
