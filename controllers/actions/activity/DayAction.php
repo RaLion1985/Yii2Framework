@@ -18,21 +18,20 @@ class DayAction extends Action
         /**
          * @var ActivityComponent
          */
-        $activityComponent=\Yii::createObject(['class'=>ActivityComponent::class,
-    'classEntity'=>ActivityDay::class
-            ]);
+        $activityComponent = \Yii::createObject(['class' => ActivityComponent::class,
+            'classEntity' => ActivityDay::class
+        ]);
         /** @var Activity $activity */
         //$activity = \Yii::$app->activity->getEntity();
         $activity = $activityComponent->getEntity();
-        if (\Yii::$app->request->isPost){
+        if (\Yii::$app->request->isPost) {
             $activity->load(\Yii::$app->request->post());
-            if(\Yii::$app->activity->createActivity($activity))
-            {
+            if (\Yii::$app->activity->createActivity($activity)) {
                 return $this->controller->redirect('/');
             }
         }
 
 
-        return $this->controller->render('day',['model'=>$activity]);
+        return $this->controller->render('day', ['model' => $activity]);
     }
 }
