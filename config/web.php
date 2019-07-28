@@ -1,7 +1,9 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+$db = file_exists( __DIR__ . '/db_local.php') ? (
+require __DIR__ . '/db_local.php') : (require __DIR__ . '/db.php');
+
 
 $config = [
     'id' => 'basic',
@@ -10,7 +12,7 @@ $config = [
     'language' => 'ru-RU',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
         '@images_path' => '@app/web/images',
     ],
     'modules' => [
@@ -20,7 +22,8 @@ $config = [
     ],
 
     'components' => [
-        'activity' => ['class'=> \app\components\ActivityComponent::class,
+        'dao' => ['class' => \app\components\DAOComponent::class],
+        'activity' => ['class' => \app\components\ActivityComponent::class,
             'classEntity' => \app\models\Activity::class],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

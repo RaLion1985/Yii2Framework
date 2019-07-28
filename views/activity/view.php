@@ -9,4 +9,6 @@
 
 
 <!--<img src="/images/<?=$model->image?>" alt="Image" width="50%">-->
-<?=\yii\helpers\Html::img('/images/'.$model->image,['width'=>150]);?>
+<? foreach($model->image as $item) :?>
+<?=\yii\helpers\Html::img('/images/'.$item,['width'=>150]);?> <br>
+<? endforeach; ?>

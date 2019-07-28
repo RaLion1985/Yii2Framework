@@ -7,14 +7,12 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model app\models\LoginForm */
 
-$this->title = 'Вход';
+$this->title = 'Календарь';
 ?>
 <h1><?= Html::encode($this->title) ?></h1>
 
-<p>Пожалуйста, заполните следующие поля для входа на сайт:</p>
+
 
 <?php $form = ActiveForm::begin(); ?>
-<?= $form->field($model, 'username') ?>
-<?= $form->field($model, 'password')->passwordInput() ?>
-<?= Html::submitButton('Login') ?>
+<?= $form->field($model, 'dateCalendar')->input('text'); ?>
 <?php ActiveForm::end(); ?>
