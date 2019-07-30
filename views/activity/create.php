@@ -3,9 +3,12 @@
  * @var $model \app\models\Activity
  */
 ?>
+<?php
+use yii\widgets\ActiveForm;
+?>
     <h2>Создание события</h2>
 <?php
-$form = \yii\bootstrap\ActiveForm::begin([]) ?>
+$form = \yii\bootstrap\ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
     <!-- Alias -->
     <!-- <?= Yii::getAlias('@app'); ?><br>
 <?= Yii::getAlias('@webroot'); ?><br>
@@ -26,7 +29,9 @@ $form = \yii\bootstrap\ActiveForm::begin([]) ?>
     'enableClientValidation' => false]); ?>
 <?= $form->field($model,'emailRepeat');?>
 
-<?=$form->field($model,'image')->fileInput();?>
+
+<?= $form->field($model, 'image[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+
     <div class="form-group">
         <button class="btn btn-default" type="submit">Создать</button>
     </div>

@@ -28,20 +28,42 @@ class ActivityComponent extends Component
 
     public function createActivity(Activity &$model): bool
     {
-       $model->image = UploadedFile::getInstance($model, 'image');
+       /*$model->image = UploadedFile::getInstance($model, 'image');
         if ($model->validate()) {
             /*if ($model->image && $this->saveUploadedFile($model->image))
             {
 
             }*/
+       /*
             if ($model->image){
                 if($file=$this->saveUploadedFile($model->image)){
                     $model->image=$file;
                 }
             }
+
+
         return true;
 
+        }*/
+
+       // For multiple download
+       $model->image = UploadedFile::getInstances($model, 'image');
+        if ($model->validate()) {
+
+
+            if ($model->image) {
+                $filesArr=[];
+                foreach ($model->image as $item) {
+                    if ($image = $this->saveUploadedFile($item)){
+                        array_push ($filesArr,$image);
+                    }
+                }
+                $model->image=$filesArr;
+            }
+            return true;
         }
+
+
         return false;
     }
 

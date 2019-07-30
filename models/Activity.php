@@ -44,7 +44,7 @@ class Activity extends Model
     public function rules()
     {
         return [
-            ['image','file','extensions'=>['jpg','png']],
+            ['image','file','extensions'=>['jpg','png'],'maxFiles'=>4],
             [['title', 'email'], 'trim'], // Удаление пробелов
             [['title', 'dateEnd'], 'required','message'=>'Обязательно'],
             ['dateEnd', 'date', 'format' => 'php:Y-m-d'],
