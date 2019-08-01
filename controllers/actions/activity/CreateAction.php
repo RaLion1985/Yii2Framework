@@ -8,6 +8,7 @@ use app\components\ActivityComponent;
 use app\models\Activity;
 use yii\base\Action;
 use yii\helpers\ArrayHelper;
+use yii\web\HttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -18,6 +19,9 @@ class CreateAction extends Action
 
     public function run()
     {
+        if (\yii::$app->rbac->cancreateActivity()){
+            throw new HttpException(403,'None authorithation');
+        }
         /**
          * @var ActivityComponent
          */
@@ -40,20 +44,20 @@ class CreateAction extends Action
                 return $this->controller->render('view', ['model' => $activity]);
             }
         }
-/*
-        $arr = ['one' => 'val1',
-            'two' => ['three' => 'val3']];
-        //$val=ArrayHelper::getValue($arr,'ones','234');
-        $val = ArrayHelper::getValue($arr, 'two.three');
-        $db = [['id' => 1, 'name' => 'George', 'type' => 'brother'], ['id' => 2, 'name' => 'Serge', 'type' => 'uncle']];
-        $lids = ArrayHelper::map($db, 'id', function ($data) {
-            return ArrayHelper::getValue($data, 'type') . ' ' .
-                ArrayHelper::getValue($data, 'name');
-        });
-        print_r($lids);
-        exit();
-        echo $val;
-        exit();*/
+        /*
+                $arr = ['one' => 'val1',
+                    'two' => ['three' => 'val3']];
+                //$val=ArrayHelper::getValue($arr,'ones','234');
+                $val = ArrayHelper::getValue($arr, 'two.three');
+                $db = [['id' => 1, 'name' => 'George', 'type' => 'brother'], ['id' => 2, 'name' => 'Serge', 'type' => 'uncle']];
+                $lids = ArrayHelper::map($db, 'id', function ($data) {
+                    return ArrayHelper::getValue($data, 'type') . ' ' .
+                        ArrayHelper::getValue($data, 'name');
+                });
+                print_r($lids);
+                exit();
+                echo $val;
+                exit();*/
         return $this->controller->render('create', ['model' => $activity]);
     }
 }

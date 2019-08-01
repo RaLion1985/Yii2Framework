@@ -95,6 +95,10 @@ class Users extends UsersBase implements IdentityInterface
         return $this->id;
     }
 
+    public function getUsername(){
+        return $this->email;
+    }
+
     /**
      * Returns a key that can be used to check the validity of a given identity ID.
      *
