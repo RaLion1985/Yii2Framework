@@ -1,7 +1,7 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = file_exists( __DIR__ . '/db_local.php') ? (
+$db = file_exists(__DIR__ . '/db_local.php') ? (
 require __DIR__ . '/db_local.php') : (require __DIR__ . '/db.php');
 
 
@@ -16,12 +16,13 @@ $config = [
         '@images_path' => '@app/web/images',
     ],
     'modules' => [
-        'auth' => [
+        'authm' => [
             'class' => 'app\modules\auth\Module',
         ],
     ],
 
     'components' => [
+        'auth' => ['class' => \app\components\AuthComponent::class],
         'dao' => ['class' => \app\components\DAOComponent::class],
         'activity' => ['class' => \app\components\ActivityComponent::class,
             'classEntity' => \app\models\Activity::class],
