@@ -22,9 +22,13 @@ $config = [
     ],
 
     'components' => [
+        'rbac' => ['class' => \app\components\RbacComponent::class],
+        'authManager' => ['class' => \yii\rbac\DbManager::class],
         'auth' => ['class' => \app\components\AuthComponent::class],
         'dao' => ['class' => \app\components\DAOComponent::class],
-        'activity' => ['class' => \app\components\ActivityComponent::class,
+        'dateFormat'=>['class'=> \app\components\DateFormatComponent::class],
+        'activity' => [
+            'class' => \app\components\ActivityComponent::class,
             'classEntity' => \app\models\Activity::class],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -34,7 +38,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
